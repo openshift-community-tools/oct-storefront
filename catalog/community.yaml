@@ -93,6 +93,16 @@ spec:
       openshift: ["4.22"]
       image: quay.io/openshift-community-tools/oct-baremetal:0.2.1-ocp4.22
       gitRef: v0.2.1
+    - version: "0.2.2"
+      channel: stable
+      openshift: ["4.21"]
+      image: quay.io/openshift-community-tools/oct-baremetal:0.2.2-ocp4.21
+      gitRef: v0.2.2
+    - version: "0.2.2"
+      channel: stable
+      openshift: ["4.22"]
+      image: quay.io/openshift-community-tools/oct-baremetal:0.2.2-ocp4.22
+      gitRef: v0.2.2
 ---
 apiVersion: communitytools.io/v1alpha1
 kind: CommunityTool
@@ -515,6 +525,16 @@ spec:
       openshift: ["4.22"]
       image: quay.io/openshift-community-tools/oct-windows-builder:1.1.0-ocp4.22
       gitRef: v1.1.0
+    - version: "1.1.1"
+      channel: stable
+      openshift: ["4.21"]
+      image: quay.io/openshift-community-tools/oct-windows-builder:1.1.1-ocp4.21
+      gitRef: v1.1.1
+    - version: "1.1.1"
+      channel: stable
+      openshift: ["4.22"]
+      image: quay.io/openshift-community-tools/oct-windows-builder:1.1.1-ocp4.22
+      gitRef: v1.1.1
 ---
 apiVersion: communitytools.io/v1alpha1
 kind: CommunityTool
@@ -720,7 +740,7 @@ spec:
       networkPolicy: false
       routes: []
       egress:
-        - { host: api.octools.net, why: Public catalog, download counts and ratings (telemetry can be turned off in the cluster policy). }
+        - { host: api.octools.net, why: "Public catalog, download counts and ratings (telemetry can be turned off in the cluster policy)." }
     rbac:
       rules:
         - { apiGroups: [operator.openshift.io], resources: [consoles], resourceNames: [cluster], verbs: [get, patch], why: The one-time install Job adds the storefront to the console's plugin list. }
@@ -1231,6 +1251,18 @@ spec:
       image: quay.io/openshift-community-tools/oct-storefront:1.6.2-ocp4.22
       gitRef: v1.6.2
       deployURL: https://raw.githubusercontent.com/openshift-community-tools/oct-storefront/main/deploy/upgrade.yaml
+    - version: "1.6.3"
+      channel: stable
+      openshift: ["4.21"]
+      image: quay.io/openshift-community-tools/oct-storefront:1.6.3-ocp4.21
+      gitRef: v1.6.3
+      deployURL: https://raw.githubusercontent.com/openshift-community-tools/oct-storefront/main/deploy/upgrade.yaml
+    - version: "1.6.3"
+      channel: stable
+      openshift: ["4.22"]
+      image: quay.io/openshift-community-tools/oct-storefront:1.6.3-ocp4.22
+      gitRef: v1.6.3
+      deployURL: https://raw.githubusercontent.com/openshift-community-tools/oct-storefront/main/deploy/upgrade.yaml
 ---
 apiVersion: communitytools.io/v1alpha1
 kind: CommunityTool
@@ -1599,7 +1631,7 @@ spec:
         - { apiGroups: [kubevirt.io, subresources.kubevirt.io], resources: [virtualmachines, virtualmachineinstances], verbs: [get, list, watch, create, update, patch, delete], why: The nested cluster's control-plane and worker VMs and the bastion. }
         - { apiGroups: [cdi.kubevirt.io, snapshot.storage.k8s.io, storage.k8s.io], resources: [datavolumes, volumeimportsources, storageprofiles, volumesnapshots, volumesnapshotcontents, volumesnapshotclasses, storageclasses], verbs: [get, list, watch, create, update, patch, delete], why: VM disks and the optional nested storage (KubeVirt CSI). }
         - { apiGroups: [k8s.ovn.org, k8s.cni.cncf.io], resources: [clusteruserdefinednetworks, network-attachment-definitions, ipamclaims], verbs: [get, list, watch, create, update, patch, delete], why: A user-defined network per nested cluster. }
-        - { apiGroups: [security.openshift.io], resources: [securitycontextconstraints], resourceNames: [anyuid], verbs: [use], why: Helper pods (HAProxy, DNS) that run as a fixed UID. }
+        - { apiGroups: [security.openshift.io], resources: [securitycontextconstraints], resourceNames: [anyuid], verbs: [use], why: "Helper pods (HAProxy, DNS) that run as a fixed UID." }
         - { apiGroups: [""], resources: [secrets, configmaps, services, serviceaccounts, endpoints, persistentvolumeclaims, resourcequotas], verbs: [get, list, watch, create, update, patch, delete], why: "Each nested cluster's pull secret, kubeconfig and install config, the Services for its API and ingress, and a quota for its namespace." }
         - { apiGroups: ["", apps, batch, discovery.k8s.io], resources: [pods, pods/exec, pods/log, deployments, jobs, endpointslices], verbs: [get, list, watch, create, update, patch, delete], why: "Helper deployments and install jobs; reads install logs and runs the network self-test (exec)." }
         - { apiGroups: [route.openshift.io, config.openshift.io, operator.openshift.io], resources: [routes, infrastructures, dnses, ingresscontrollers], verbs: [get, list, watch, create, update, patch, delete], why: "Optionally publishes the nested API and console, and with publishAppRoutes the nested cluster's own app routes, through host Routes; reads the host domain." }
